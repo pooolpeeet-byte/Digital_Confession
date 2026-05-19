@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Как снять — Цифровая исповедь</title>
+<meta name="description" content="Инструкция по записи видео-монолога для документального фильма «Цифровая исповедь». Формат, технические требования, темы." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f4f1ec;
+    --bg-soft: #ebe7e0;
+    --bg-card: #ffffff;
+    --bg-deep: #e8e4dc;
+    --line: #c8c2b8;
+    --ink: #0a0a0a;
+    --mute: #6a665e;
+    --dim: #9a958c;
+    --accent: #c1272d;
+    --accent-glow: #e63946;
+    --font-mono: 'PT Mono', ui-monospace, 'Courier New', monospace;
+    --font-serif: 'PT Serif', Georgia, 'Times New Roman', serif;
+    --max-w: 1320px;
+    --gutter: 32px;
+  }
+
+  @media (max-width: 768px) { :root { --gutter: 20px; } }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: var(--font-mono);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 14px;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 100;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+  }
+
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 99;
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0,0,0,0.012) 2px, rgba(0,0,0,0.012) 3px);
+  }
+
+  /* HEADER */
+  header {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 22px var(--gutter); z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(244,241,236,0.96);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink);
+    -webkit-text-stroke: 0.6px var(--ink);
+  }
+  .back-link {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--mute); letter-spacing: 0.05em;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .back-link:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* MAIN */
+  main {
+    padding-top: 100px;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px var(--gutter) 100px;
+  }
+
+  .section-header {
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 40px; align-items: start;
+    margin-bottom: 70px;
+  }
+  @media (max-width: 768px) { .section-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; } }
+
+  .section-num { display: flex; flex-direction: column; gap: 4px; padding-top: 6px; }
+  .section-num .n { font-family: var(--font-mono); font-size: 11px; color: var(--dim); letter-spacing: 0.08em; }
+  .section-num .l { font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .section-title {
+    font-family: var(--font-mono); font-weight: 400;
+    font-size: clamp(24px, 3.5vw, 44px);
+    line-height: 1.15; letter-spacing: -0.02em;
+    text-transform: uppercase; color: var(--ink);
+    -webkit-text-stroke: 1px var(--ink);
+  }
+  @media (max-width: 768px) { .section-title { -webkit-text-stroke: 0.6px var(--ink); } }
+
+  /* Tutorial intro */
+  .tutorial-intro { max-width: 760px; margin-bottom: 50px; }
+  .tutorial-intro p {
+    font-family: var(--font-mono);
+    font-size: 15px; line-height: 1.7;
+    color: var(--ink); margin-bottom: 14px;
+  }
+  .tutorial-intro p.lead {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+    font-size: 22px; line-height: 1.5;
+    border-left: 2px solid var(--accent); padding-left: 22px;
+    margin-bottom: 24px;
+  }
+
+  /* Sub-blocks */
+  .sub-block { margin-bottom: 60px; }
+  .sub-block:last-child { margin-bottom: 0; }
+
+  .sub-head {
+    display: grid; grid-template-columns: 90px 1fr;
+    gap: 24px; align-items: baseline;
+    border-top: 1px solid var(--line); padding-top: 24px; margin-bottom: 30px;
+  }
+  .sub-head .tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+  .sub-head .h {
+    font-family: var(--font-mono); font-weight: 400;
+    font-size: clamp(20px, 2.6vw, 30px);
+    text-transform: uppercase; letter-spacing: -0.015em;
+    color: var(--ink); -webkit-text-stroke: 1px var(--ink);
+    line-height: 1.15;
+  }
+  @media (max-width: 768px) {
+    .sub-head { grid-template-columns: 1fr; gap: 8px; }
+    .sub-head .h { -webkit-text-stroke: 0.6px var(--ink); }
+  }
+
+  /* Checklist */
+  .checklist {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+  }
+  @media (max-width: 768px) { .checklist { grid-template-columns: 1fr; } }
+
+  .check-item {
+    padding: 22px 24px;
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    display: grid; grid-template-columns: 36px 1fr;
+    gap: 14px; align-items: start;
+    transition: background 0.3s ease;
+  }
+  .check-item:hover { background: var(--bg-card); }
+  .check-item .icn {
+    width: 24px; height: 24px; border: 1px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink); flex-shrink: 0;
+    -webkit-text-stroke: 0.4px var(--ink);
+  }
+  .check-item.bad .icn { border-color: var(--accent); color: var(--accent); -webkit-text-stroke: 0.4px var(--accent); }
+  .check-item .ctitle {
+    font-family: var(--font-mono); font-size: 14px;
+    color: var(--ink); text-transform: uppercase;
+    letter-spacing: 0.03em; margin-bottom: 6px;
+    -webkit-text-stroke: 0.4px var(--ink);
+  }
+  .check-item .cdesc {
+    font-family: var(--font-mono); font-size: 12px;
+    line-height: 1.6; color: var(--mute);
+  }
+
+  /* Topics grid */
+  .topics-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 900px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .topics-grid { grid-template-columns: 1fr; } }
+
+  .topic-card {
+    padding: 28px 24px;
+    background: var(--bg);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: background 0.3s ease;
+    min-height: 180px;
+  }
+  .topic-card:hover { background: var(--bg-card); }
+  .topic-card .act {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--accent); letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .topic-card .ttitle {
+    font-family: var(--font-mono); font-size: 15px;
+    color: var(--ink); text-transform: uppercase;
+    letter-spacing: 0.02em; line-height: 1.25;
+    -webkit-text-stroke: 0.5px var(--ink);
+  }
+  .topic-card .tdesc {
+    font-family: var(--font-mono); font-size: 12px;
+    line-height: 1.6; color: var(--mute);
+    margin-top: auto;
+  }
+
+  /* CTA bottom */
+  .page-cta {
+    margin-top: 80px; padding-top: 48px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 20px;
+    align-items: flex-start;
+  }
+  .page-cta p {
+    font-family: var(--font-mono); font-size: 14px;
+    color: var(--mute); max-width: 540px; line-height: 1.6;
+  }
+  .cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono); font-size: 13px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--bg); background: var(--ink);
+    padding: 14px 28px; position: relative; overflow: hidden;
+    transition: color 0.3s ease;
+  }
+  .cta::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--accent);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .cta:hover::before { transform: translateX(0); }
+  .cta span { position: relative; z-index: 1; }
+
+  /* Footer */
+  footer {
+    padding: 32px var(--gutter);
+    max-width: var(--max-w); margin: 0 auto;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--dim); letter-spacing: 0.06em; text-transform: uppercase;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Цифровая исповедь · 1147 Продакшнс</div>
+  <a href="index.html" class="back-link">← Вернуться на главную</a>
+</header>
+
+<main>
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">
+        <span class="n">—</span>
+        <span class="l">Как снять</span>
+      </div>
+      <h1 class="section-title">Что мы хотим увидеть. И&nbsp;о&nbsp;чём услышать.</h1>
+    </div>
+
+    <div class="tutorial-intro">
+      <p class="lead">Запись — это не выступление. Это разговор с собой, на который никто не смотрит. Чем спокойнее и честнее — тем сильнее работает в фильме.</p>
+      <p>Снимать можно на телефон. Главное — чтобы было видно лицо и было слышно, что вы говорите. Ниже — короткая инструкция, как сделать это правильно, и список тем, на которые мы будем опираться при выборе.</p>
+    </div>
+
+    <!-- 3.1 Формат -->
+    <div class="sub-block">
+      <div class="sub-head">
+        <span class="tag">01 — Формат</span>
+        <h2 class="h">Какое видео нужно снять</h2>
+      </div>
+      <div class="checklist">
+        <div class="check-item">
+          <span class="icn">●</span>
+          <div>
+            <div class="ctitle">Монолог 1–3 минуты</div>
+            <div class="cdesc">Один дубль. Можно с паузами и оговорками — настоящая речь живая. Если сбились — продолжайте, не начинайте заново.</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <span class="icn">●</span>
+          <div>
+            <div class="ctitle">Лицо в кадре</div>
+            <div class="cdesc">Поясной или крупный план, лицо хорошо освещено, глаза видны. Камера на уровне глаз или чуть выше — не снизу.</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <span class="icn">●</span>
+          <div>
+            <div class="ctitle">Эмоция, а не «правильность»</div>
+            <div class="cdesc">Если хочется молчать — молчите. Если смеётесь, плачете, отворачиваетесь — оставляйте всё. Мы ищем живое, не отрепетированное.</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <span class="icn">●</span>
+          <div>
+            <div class="ctitle">Чистый звук</div>
+            <div class="cdesc">Тихая комната, без эха и шума на фоне. Телефон близко — на расстоянии вытянутой руки. Лучше всего — петличка или наушники с микрофоном.</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <span class="icn">●</span>
+          <div>
+            <div class="ctitle">Естественный свет</div>
+            <div class="cdesc">Лицом к окну — солнечный или дневной свет даёт лучшее изображение. Не снимайте с окном за спиной — лицо уйдёт в тень.</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <span class="icn">●</span>
+          <div>
+            <div class="ctitle">Горизонтальная ориентация</div>
+            <div class="cdesc">Видео в формате 16:9 (телефон лёжа). Качество — 1080p и выше, если позволяет устройство.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.2 Чего избегать -->
+    <div class="sub-block">
+      <div class="sub-head">
+        <span class="tag">02 — Чего лучше избежать</span>
+        <h2 class="h">Что делает запись непригодной</h2>
+      </div>
+      <div class="checklist">
+        <div class="check-item bad">
+          <span class="icn">×</span>
+          <div>
+            <div class="ctitle">Чтение по бумажке</div>
+            <div class="cdesc">Заготовленный текст слышен сразу. Лучше говорите своими словами, пусть со сбивами — это то, что нужно.</div>
+          </div>
+        </div>
+        <div class="check-item bad">
+          <span class="icn">×</span>
+          <div>
+            <div class="ctitle">Шум, музыка, телевизор</div>
+            <div class="cdesc">Любой посторонний звук на фоне перекрывает голос и делает запись непригодной для монтажа.</div>
+          </div>
+        </div>
+        <div class="check-item bad">
+          <span class="icn">×</span>
+          <div>
+            <div class="ctitle">Селфи-камера в темноте</div>
+            <div class="cdesc">Лицо в тени, синюшный оттенок от экрана. Если нет хорошего света — лучше дождаться дня.</div>
+          </div>
+        </div>
+        <div class="check-item bad">
+          <span class="icn">×</span>
+          <div>
+            <div class="ctitle">Вертикальное видео</div>
+            <div class="cdesc">Не подходит для фильма. Снимайте телефоном горизонтально.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.3 Темы -->
+    <div class="sub-block">
+      <div class="sub-head">
+        <span class="tag">03 — О чём рассказать</span>
+        <h2 class="h">Темы, которые нам особенно интересны</h2>
+      </div>
+      <p style="font-family:var(--font-mono); font-size:14px; line-height:1.7; color:var(--mute); max-width:760px; margin-bottom:30px;">
+        Это ориентиры, а не обязательная программа. Если у вас есть своя история — обязательно расскажите, даже если она не попадает ни в один блок. Фильм строится вокруг трёх этапов жизни: <span style="color:var(--accent);">рождение и&nbsp;юность · взросление · старость и&nbsp;уход</span>.
+      </p>
+
+      <div class="topics-grid">
+        <div class="topic-card">
+          <span class="act">Акт I · Рождение</span>
+          <div class="ttitle">Появление ребёнка</div>
+          <div class="tdesc">Истории акушеров, врачей, родителей. Роды, отказы, усыновление, послеродовая депрессия, бесплодие, ожидание.</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт I · Детство</span>
+          <div class="ttitle">Детские травмы и опоры</div>
+          <div class="tdesc">Воспоминание, которое определило вас. Отношения с родителями. Школа, друзья, одиночество, страхи, первая любовь.</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт I · Юность</span>
+          <div class="ttitle">Поиск себя</div>
+          <div class="tdesc">Конфликты с семьёй. Жизнь в малом городе. Желание уехать или остаться. Принятие или отрицание себя — тела, ориентации, веры.</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт II · Взросление</span>
+          <div class="ttitle">Не та жизнь</div>
+          <div class="tdesc">Работа, которую вы не выбирали. Отказ от мечты ради семьи. Творчество, отложенное на потом. Внутренний разлад между «надо» и «хочу».</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт II · Отношения</span>
+          <div class="ttitle">Любовь и одиночество</div>
+          <div class="tdesc">Брак, развод, измена, дружба, расставание. Зависимости. Родительство. Чувство, что вас не понимают близкие.</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт II · Зрелость</span>
+          <div class="ttitle">Тело и время</div>
+          <div class="tdesc">Болезнь. Страх потерять силу или красоту. Усталость. Психотерапия. То, что не удалось простить — себе или другим.</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт III · Потеря</span>
+          <div class="ttitle">Прощание</div>
+          <div class="tdesc">Смерть близкого. Уход питомца. Конец отношений. Эмиграция. Болезнь, которая всё изменила. Жизнь после.</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт III · Уход</span>
+          <div class="ttitle">Близость смерти</div>
+          <div class="tdesc">Работа в хосписе или с тяжелобольными. Профессии, связанные со смертью — патологоанатомы, реаниматологи, священники, гробовщики.</div>
+        </div>
+        <div class="topic-card">
+          <span class="act">Акт III · Итог</span>
+          <div class="ttitle">Что осталось</div>
+          <div class="tdesc">Переосмысление прожитой жизни. То, что не успели. Что хотели бы сказать кому-то. Что хотите оставить после себя.</div>
+        </div>
+      </div>
+
+      <p style="font-family:var(--font-mono); font-size:13px; line-height:1.7; color:var(--mute); max-width:760px; margin-top:24px;">
+        Если ваша история не вписывается ни в одну из тем выше — это, скорее всего, как раз то, что нам нужно.
+      </p>
+    </div>
+
+    <div class="page-cta">
+      <p>Готовы записать видео? Заполните анкету на главной странице — мы свяжемся с вами в течение 3 рабочих дней.</p>
+      <a href="index.html#form" class="cta">
+        <span>Отправить заявку</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>1147 Продакшнс · Цифровая исповедь</span>
+  <a href="index.html" style="border-bottom: 1px solid transparent; transition: border-color 0.2s ease;" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">← Вернуться на главную</a>
+</footer>
+
+</body>
+</html>
