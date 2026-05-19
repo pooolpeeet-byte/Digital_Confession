@@ -65,11 +65,14 @@
   /* HEADER */
   header {
     position: fixed; top: 0; left: 0; right: 0;
-    padding: 22px var(--gutter); z-index: 50;
-    display: flex; justify-content: space-between; align-items: center;
+    padding: 0; z-index: 50;
     background: rgba(244,241,236,0.96);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    max-width: var(--max-w); margin: 0 auto; padding: 22px var(--gutter);
+    display: flex; justify-content: space-between; align-items: center;
   }
   .brand {
     font-family: var(--font-mono); font-size: 11px;
@@ -196,8 +199,10 @@
 <body>
 
 <header>
-  <div class="brand">Цифровая исповедь · 1147 Продакшнс</div>
-  <a href="index.html" class="back-link">← Вернуться на главную</a>
+  <div class="header-inner">
+    <a href="index.html" class="brand">Цифровая исповедь</a>
+    <a href="index.html" class="back-link">← Вернуться на главную</a>
+  </div>
 </header>
 
 <main>

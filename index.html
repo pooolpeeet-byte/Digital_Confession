@@ -107,18 +107,22 @@
   /* HEADER */
   header {
     position: fixed; top: 0; left: 0; right: 0;
-    padding: 22px var(--gutter); z-index: 50;
-    display: flex; justify-content: space-between; align-items: center;
+    padding: 0; z-index: 50;
     background: linear-gradient(to bottom, rgba(244,241,236,0.95), rgba(244,241,236,0));
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    transition: padding 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    transition: border-color 0.3s ease, background 0.3s ease;
     border-bottom: 1px solid transparent;
   }
   header.scrolled {
-    padding: 14px var(--gutter);
     background: rgba(244,241,236,0.96);
     border-bottom-color: var(--line);
   }
+  .header-inner {
+    max-width: var(--max-w); margin: 0 auto; padding: 22px var(--gutter);
+    display: flex; justify-content: space-between; align-items: center;
+    transition: padding 0.3s ease;
+  }
+  header.scrolled .header-inner { padding-top: 14px; padding-bottom: 14px; }
   .brand {
     font-family: var(--font-mono); font-size: 11px;
     letter-spacing: 0.18em; text-transform: uppercase;
@@ -890,16 +894,18 @@
 <body>
 
 <header id="header">
-  <a href="index.html" class="brand" style="margin-left: 65px;">Цифровая исповедь</a>
-  <nav>
-    <ul>
-      <li><a href="about.html">О проекте</a></li>
-      <li><a href="how-to.html">Как снять</a></li>
-    </ul>
-  </nav>
-  <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="header-inner">
+    <a href="index.html" class="brand">Цифровая исповедь</a>
+    <nav>
+      <ul>
+        <li><a href="about.html">О проекте</a></li>
+        <li><a href="how-to.html">Как снять</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
