@@ -225,7 +225,7 @@
     font-weight: 400;
     font-size: clamp(48px, 11vw, 160px);
     line-height: 0.92;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.01em;
     text-transform: uppercase;
     margin: 60px 0 40px;
     color: var(--ink);
@@ -237,17 +237,17 @@
   .hero-title .dot { color: var(--accent); -webkit-text-stroke: 3px var(--accent); }
 
   @media (max-width: 768px) {
-    .hero-title { -webkit-text-stroke: 2px var(--ink); margin-top: 6px; }
+    .hero-title { -webkit-text-stroke: 2px var(--ink); margin: 20px 0 30px; }
     .hero-title .dot { -webkit-text-stroke: 2px var(--accent); }
-    .hero { padding-top: 62px; }
-    .hero-inner { min-height: calc(100vh - 102px); }
+    .hero { padding: 70px 0 40px; }
+    .hero-inner { min-height: 75vh; }
   }
 
   .hero-bottom {
     display: grid; grid-template-columns: 1fr auto;
     gap: 60px; align-items: end; padding-bottom: 20px;
   }
-  @media (max-width: 768px) { .hero-bottom { grid-template-columns: 1fr; gap: 30px; transform: translateY(-100px); } }
+  @media (max-width: 768px) { .hero-bottom { grid-template-columns: 1fr; gap: 24px; } }
 
   .logline {
     font-family: var(--font-mono);
@@ -902,6 +902,7 @@
       <ul>
         <li><a href="about.html">О проекте</a></li>
         <li><a href="how-to.html">Как снять</a></li>
+        <li><a href="team.html">Команда</a></li>
       </ul>
     </nav>
     <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
@@ -914,6 +915,7 @@
   <ul>
     <li><a href="about.html" class="mobile-nav-link">О проекте</a></li>
     <li><a href="how-to.html" class="mobile-nav-link">Как снять</a></li>
+    <li><a href="team.html" class="mobile-nav-link">Команда</a></li>
   </ul>
   <span class="menu-meta">1147 Продакшнс · Цифровая исповедь</span>
 </div>
@@ -940,7 +942,7 @@
 
     <h1 class="hero-title">
       <span class="line-1">Цифровая</span>
-      <span class="line-2">исповедь.</span>
+      <span class="line-2">исповедь</span>
     </h1>
 
     <div class="hero-bottom">
@@ -977,7 +979,7 @@
         <span class="n">01 / 05</span>
         <span class="l">Трейлер</span>
       </div>
-      <h2 class="section-title">Расскажите свою историю. Лицом для&nbsp;неё станет цифровой аватар.</h2>
+      <h2 class="section-title">Расскажите свою историю в цифровом теле.</h2>
     </div>
 
     <div class="trailer-frame reveal">
@@ -1020,7 +1022,7 @@
       <div class="form-step">
         <span class="num">[ 03 ]</span>
         <span class="title">Что будет дальше</span>
-        <span class="desc">Мы посмотрим заявку, свяжемся с вами, обсудим участие, создадим цифрового аватара для фильма.</span>
+        <span class="desc">Мы посмотрим заявку, свяжемся с вами, обсудим участие, создадим цифровое тело для участия в фильме.</span>
       </div>
     </div>
 
@@ -1052,7 +1054,7 @@
     </div>
 
     <div class="form-intro reveal">
-      <p>Поучаствовать может любой. Возраст, профессия, регион — не имеют значения. Важен только опыт, которым вы готовы поделиться.</p>
+      <p>Поучаствовать может любой. Возраст, профессия, регион — не имеют значения. Важна только история, которой вы готовы поделиться.</p>
       <p>Вы можете отправить свою историю любым удобным способом: прислать видео на почту <a href="mailto:digitalconfession@mail.ru" style="color:var(--ink); border-bottom:1px solid var(--accent); padding-bottom:1px;">digitalconfession@mail.ru</a> или записать кружок нашему <a href="https://t.me/digital_confession_bot" target="_blank" rel="noopener" style="color:var(--ink); border-bottom:1px solid var(--accent); padding-bottom:1px;">телеграм-боту</a>.</p>
     </div>
 
@@ -1097,7 +1099,7 @@
       <div class="form-step">
         <span class="num">[ 01 ]</span>
         <span class="title">Анонимность по умолчанию</span>
-        <span class="desc">Имя, лицо и голос не публикуются. В фильме говорит цифровой аватар, созданный по смыслу вашей истории.</span>
+        <span class="desc">Ваше имя и лицо не публикуются. В фильме говорит цифровой аватар, созданный по смыслу вашей истории.</span>
       </div>
       <div class="form-step">
         <span class="num">[ 02 ]</span>
@@ -1161,6 +1163,7 @@
         <ul>
           <li><a href="about.html">О проекте</a></li>
           <li><a href="how-to.html">Как снять</a></li>
+          <li><a href="team.html">Команда</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1173,7 +1176,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 · <a href="https://1147.pro" target="_blank" rel="noopener">1147 PRODUCTIONS</a></span>
-      <span>Иван Левшин · Сергей Гавриков</span>
+      <span>Иван Левшин · Сергей Гавриков · Арсений Попов</span>
     </div>
   </div>
 </footer>

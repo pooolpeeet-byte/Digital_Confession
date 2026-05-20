@@ -78,16 +78,67 @@
     font-family: var(--font-mono); font-size: 11px;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--ink);
+    display: flex; align-items: center; gap: 10px;
     -webkit-text-stroke: 0.6px var(--ink);
   }
-  .back-link {
+  nav ul { display: flex; gap: 24px; list-style: none; }
+  nav a {
     font-family: var(--font-mono); font-size: 12px;
-    color: var(--mute); letter-spacing: 0.05em;
+    color: var(--mute);
     border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
+    padding-bottom: 3px;
     transition: color 0.2s ease, border-color 0.2s ease;
   }
-  .back-link:hover { color: var(--ink); border-bottom-color: var(--accent); }
+  nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+  @media (max-width: 980px) { nav { display: none; } }
+
+  /* BURGER */
+  .burger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    z-index: 60;
+  }
+  @media (max-width: 980px) { .burger { display: flex; } }
+  .burger span {
+    display: block; width: 100%; height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;
+    transform-origin: center;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    display: none;
+    position: fixed; inset: 0; z-index: 49;
+    background: rgba(244,241,236,0.98);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    flex-direction: column; justify-content: center; align-items: center;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu.visible { opacity: 1; }
+  .mobile-menu ul { list-style: none; text-align: center; }
+  .mobile-menu ul li { margin: 20px 0; }
+  .mobile-menu ul a {
+    font-family: var(--font-mono); font-size: 22px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 4px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .mobile-menu ul a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .mobile-menu .menu-meta {
+    position: absolute; bottom: 32px;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase;
+  }
 
   /* MAIN */
   main {
@@ -257,25 +308,82 @@
   .cta:hover::before { transform: translateX(0); }
   .cta span { position: relative; z-index: 1; }
 
-  /* Footer */
+  /* FOOTER */
   footer {
-    padding: 32px var(--gutter);
-    max-width: var(--max-w); margin: 0 auto;
+    border-top: 1px solid var(--line);
+    padding: 80px var(--gutter) 40px;
+    background: var(--bg); position: relative; z-index: 2;
+  }
+  .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px; margin-bottom: 60px;
+  }
+  @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .footer-mark {
+    font-family: var(--font-mono); font-size: 16px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 14px; color: var(--ink);
+    -webkit-text-stroke: 0.6px var(--ink);
+  }
+  .footer-mark .accent { color: var(--accent); -webkit-text-stroke: 0.6px var(--accent); }
+  .footer-tag {
+    font-family: var(--font-mono); color: var(--mute);
+    font-size: 13px; line-height: 1.6; max-width: 360px;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    font-family: var(--font-mono); font-size: 13px;
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    padding-bottom: 1px;
+  }
+  .footer-col a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
     font-family: var(--font-mono); font-size: 11px;
     color: var(--dim); letter-spacing: 0.06em; text-transform: uppercase;
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    border-top: 1px solid var(--line);
   }
+  .footer-bottom a { border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
+  .footer-bottom a:hover { border-bottom-color: var(--accent); }
 </style>
 </head>
 <body>
 
-<header>
+<header id="header">
   <div class="header-inner">
     <a href="index.html" class="brand">Цифровая исповедь</a>
-    <a href="index.html" class="back-link">← Вернуться на главную</a>
+    <nav>
+      <ul>
+        <li><a href="about.html">О проекте</a></li>
+        <li><a href="how-to.html">Как снять</a></li>
+        <li><a href="team.html">Команда</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul>
+    <li><a href="about.html" class="mobile-nav-link">О проекте</a></li>
+    <li><a href="how-to.html" class="mobile-nav-link">Как снять</a></li>
+    <li><a href="team.html" class="mobile-nav-link">Команда</a></li>
+  </ul>
+  <span class="menu-meta">1147 Продакшнс · Цифровая исповедь</span>
+</div>
 
 <main>
   <div class="section-inner">
@@ -456,9 +564,65 @@
 </main>
 
 <footer>
-  <span>1147 Продакшнс · Цифровая исповедь</span>
-  <a href="index.html" style="border-bottom: 1px solid transparent; transition: border-color 0.2s ease;" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">← Вернуться на главную</a>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-mark">Цифровая <span class="accent">исповедь</span></div>
+        <p class="footer-tag">Экспериментальный фильм-исследование человеческой идентичности в цифровую эпоху искусственного интеллекта.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Разделы</h5>
+        <ul>
+          <li><a href="about.html">О проекте</a></li>
+          <li><a href="how-to.html">Как снять</a></li>
+          <li><a href="team.html">Команда</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="mailto:digitalconfession@mail.ru">Написать на почту</a></li>
+          <li><a href="https://t.me/digital_confession_bot" target="_blank" rel="noopener">Телеграм бот</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 · <a href="https://1147.pro" target="_blank" rel="noopener">1147 PRODUCTIONS</a></span>
+      <span>Иван Левшин · Сергей Гавриков · Арсений Попов</span>
+    </div>
+  </div>
 </footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    requestAnimationFrame(() => mobileMenu.classList.add('visible'));
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('visible');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => mobileMenu.classList.remove('open'), 350);
+  }
+
+  burger.addEventListener('click', () => {
+    burger.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
 
 </body>
 </html>
